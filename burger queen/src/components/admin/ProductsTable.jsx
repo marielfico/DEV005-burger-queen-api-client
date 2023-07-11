@@ -1,5 +1,5 @@
 //import React from 'react'
-import { ProductTableRow } from './EmployeeTableRow'
+import { ProductTableRow } from './ProductTableRow'
 
 export const ProductsTable = ({loaded , data, setDataForm, deleteProduct}) => {
 
