@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./EmployeeForm.css";
+import "./ProductForm.css";
 
 
 //import {guardar} from "/src/routes/Admin.jsx";
@@ -10,7 +10,7 @@ const initialForm={
   price:'',
   image:'',
   type:'',
-  dateEntry:''};
+  dataEntry:''};
 
 
 const ProductForm=({createProduct, updateProduct, dataForm, setDataForm})=> {
@@ -94,7 +94,7 @@ const ProductForm=({createProduct, updateProduct, dataForm, setDataForm})=> {
             <div className="input">
               <label>Imagen:</label>
               <input
-                type="file"
+                type="text"
                 name="image"
                 placeholder="Imagen"
                 value={form.image}

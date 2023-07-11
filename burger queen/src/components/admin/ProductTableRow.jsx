@@ -3,22 +3,23 @@
 // //import '../assets/icons/all.min.css'
 
 
-export const EProductTableRow = ({user, setDataForm, deleteUser}) => {
+export const ProductTableRow = ({product, setDataForm, deleteProduct}) => {
     
-    const {id,email , role}=user;
+    const {id, name , price, image, type, dataEntry}=product;
     //console.log(user)
   return (
     <tr>
         <td>{id}</td>
         <td>{id}</td>
-        {/* <td>Nombre</td> */}
-        <td>{role}</td>
-        <td>{email}</td>
-        <td>********</td>
+        <td>[Nombre]</td>
+        <td>{price}</td>
+        <td>{image}</td>
+        <td>{type}</td>
+        <td>{dataEntry}</td>
         <td>
-            <button onClick={()=>setDataForm(user)}><i className="fa pen-to-square"></i></button>
-            <button onClick={()=>deleteUser(id)}><i className="fa fa-trash-can"></i></button> 
-            </td>
+            <button onClick={()=>setDataForm(product)}><i className="fa pen-to-square"></i></button>
+            <button onClick={()=>deleteProduct(id)}><i className="fa fa-trash-can"></i></button> 
+        </td>
     </tr>
     
   )

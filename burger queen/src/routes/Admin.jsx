@@ -2,6 +2,7 @@ import { AsideBar } from "../components/Aside";
 import "./Admin.css";
 //import { useState, useEffect } from "react";
 //import { handleClickEditar } from "../services/users.service";
+import { Products } from "../components/admin/Products";
 import { Employees } from "../components/Employees";
 
 export const Admin = () => {
@@ -61,7 +62,8 @@ export const Admin = () => {
         </aside>
 
         <section className="employees">
-          
+{/*           
+          <Products /> */}
         <Employees />
 
        

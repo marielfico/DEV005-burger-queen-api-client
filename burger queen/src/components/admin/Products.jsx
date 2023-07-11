@@ -7,16 +7,16 @@ import { ProductsTable } from './ProductsTable';
 const token=localStorage.getItem('token');
   console.log('este es el toke: '+token)
 
-export const Employees = () => {
+export const Products = () => {
 
   const [db, setDb]=useState('');
   const [dataForm, setDataForm]=useState([]);
   const [loaded, setLoaded]=useState(false)
 
 
-  //Listar usuarios
+  //Listar productos
   useEffect(() => {
-    fetch("http://localhost:8080/users", {
+    fetch("http://localhost:8080/products", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -44,16 +44,16 @@ export const Employees = () => {
       } , []);
 
   //crear nuevo producto
-  const createProduct=(user)=>{
-    console.log(user)
-    user.id='';
-    fetch("http://localhost:8080/users", {
+  const createProduct=(product)=>{
+    console.log(product)
+    product.id='';
+    fetch("http://localhost:8080/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "authorization": "Bearer "+ token ,
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(product)
     })
     .then((res)=>{
       console.log(res)
@@ -67,8 +67,8 @@ export const Employees = () => {
       
     })
     .then((dataJs) => {
-      console.log(dataJs.user)
-      setDb([...db, dataJs.user])
+      console.log(dataJs.product)
+      setDb([...db, dataJs.product])
     })
     .catch((error) =>
     console.log(error)
@@ -76,14 +76,14 @@ export const Employees = () => {
   }
 
   //actualizar producto
-  const updateProduct=(user)=>{ 
-    fetch(`http://localhost:8080/users/${user.id}`, {
+  const updateProduct=(product)=>{ 
+    fetch(`http://localhost:8080/products/${product.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         "authorization": "Bearer "+ token ,
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(product)
     })
     .then((res)=>{
       console.log(res)
@@ -98,7 +98,7 @@ export const Employees = () => {
     })
     .then((dataJs) => {
       console.log(dataJs)
-      const newDb=db.map((d)=>(d.id===user.id?user:d));
+      const newDb=db.map((d)=>(d.id===product.id?product:d));
       setDb(newDb)
     })
     .catch((error) =>
@@ -108,9 +108,9 @@ export const Employees = () => {
   
   //Eliminar producto
   const deleteProduct=(id)=>{  
-    const isDelete= confirm(`¿Estas seguro de eliminar el usuario con el id '${id}'?`)
+    const isDelete= confirm(`¿Estas seguro de eliminar el producto con el id '${id}'?`)
     if (isDelete){
-      fetch(`http://localhost:8080/users/${id}` ,{
+      fetch(`http://localhost:8080/products/${id}` ,{
         method:"DELETE",
         headers:{
           "Content-Type": "application/json",
@@ -144,7 +144,7 @@ export const Employees = () => {
       <ProductForm createProduct={createProduct} updateProduct={updateProduct} dataForm={dataForm} setDataForm={setDataForm}/>
     </div>
     <div>
-      <ProductsTable loaded={loaded} data = {db} setDataForm={setDataForm} deleteUser={deleteProduct} />
+      <ProductsTable loaded={loaded} data = {db} setDataForm={setDataForm} deleteProduct={deleteProduct} />
     </div>
     </>
   )
